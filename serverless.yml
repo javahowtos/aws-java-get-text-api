@@ -1,0 +1,15 @@
+service: get-text-api
+provider:
+  name: aws
+  runtime: java8
+  stage: dev
+  region: eu-west-1
+package:
+  artifact: 'target/${self:service}-${self:provider.stage}.jar'
+functions:
+  getText:
+    handler: com.serverless.Handler
+    events:
+      - http:
+          path: api/gettext
+          method: get
